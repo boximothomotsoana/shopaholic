@@ -1,3 +1,4 @@
+import 'package:auth/dashboard/index.dart';
 import 'package:auth/widgets/orders.dart';
 import 'package:flutter/material.dart';
 import '../ui/dashboard.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String dashboard = '/dashboard';
   static const String orders = '/orders';
   static const String register = '/register';
+  static const String admin = '/admin';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -31,6 +33,7 @@ class AppRoutes {
       sell: (context) => FormScreen(),
       deliver: (context) => FormScreen(),
       login: (context) => LoginPage(),
+      admin: (context) => AdminDashboardApp(),
       introScreen: (context) => IntroScreen(),
       dashboard: (context) => Dashboard(),
       orders: (context) => OrderScreen(),
@@ -38,7 +41,6 @@ class AppRoutes {
       "/success": (context) => PaymentSuccessScreen(),
       "/cancel": (context) => PaymentCancelledScreen(),
       "/register": (context) => SignupPage(),
-
     };
   }
 }

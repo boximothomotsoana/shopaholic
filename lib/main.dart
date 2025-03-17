@@ -2,6 +2,7 @@ import 'package:auth/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dashboard/index.dart';
 import 'utils/app_colors.dart';
 import 'providers/cart_provider.dart';
 import 'dart:async';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //initialRoute: isFirstTime ? AppRoutes.introScreen : AppRoutes.splashScreen,
-      initialRoute: isFirstTime ? AppRoutes.introScreen : AppRoutes.dashboard,
+      initialRoute: isFirstTime ? AppRoutes.introScreen : AppRoutes.admin,
       routes: {
         ...AppRoutes.getRoutes(),
         "/success": (context) => PaymentSuccessScreen(),

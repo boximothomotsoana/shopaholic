@@ -9,7 +9,7 @@ import 'orders.dart';
 // GlobalKey for Scaffold
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 // 🔹 Top Navigation Bar
-class TopBar extends StatelessWidget {
+class TopBar extends StatefulWidget {
   final int cartItemCount;
   final VoidCallback onSearchTap;
   final VoidCallback onTap;
@@ -17,10 +17,20 @@ class TopBar extends StatelessWidget {
   TopBar({super.key, required this.cartItemCount, required this.onSearchTap, required this.onTap});
 
   @override
+  _TopBarState createState() => _TopBarState();
+}
+
+class _TopBarState extends State<TopBar> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  int cartItemCount = 3;
+
+  @override
   Widget build(BuildContext context) {
     bool isMobile = MediaQuery.of(context).size.width < 900;
+    bool showFilter = false;
 
     return Row(
+      key: _scaffoldKey,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
@@ -48,7 +58,7 @@ class TopBar extends StatelessWidget {
                 });
               }),
               SizedBox(height: 20, child: VerticalDivider(thickness: 1, width: 10, color: Colors.grey.withOpacity(0.5),),),
-              _buildNavMenuItem(context, "Register", "/register"),
+              _buildNavMenuItem(context, "Dashboard", "/admin"),
 
               IconButton(icon: Icon(Icons.favorite_border), onPressed: () {}),
               Stack(
@@ -70,16 +80,10 @@ class TopBar extends StatelessWidget {
                         child: Text("$cartItemCount", style: TextStyle(fontSize: 12, color: Colors.white)),
                       ),
                     ),
+                  // Button to toggle filter visibility
                 ],
               ),
             ],
-            if (isMobile)
-              IconButton(
-                icon: Icon(Icons.more_vert),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();  // Open the drawer
-                },
-              ),
           ],
         ),
       ],
